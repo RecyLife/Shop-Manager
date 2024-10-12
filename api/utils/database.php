@@ -70,4 +70,9 @@ class Database
     {
         return $this->conn->real_escape_string($str);
     }
+    
+    public function getLastInsertedID() {
+        return $this->conn->insert_id;
+        
+    }
 }

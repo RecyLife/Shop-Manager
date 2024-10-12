@@ -44,7 +44,7 @@ function onFormSubmit() {
         result.push({"title": specificationsTitlesInputs[i].value, "value": specificationsValuesInputs[i].value})
     }
     
-    specificationsResultInput.innerText = JSON.stringify(result)
+    specificationsResultInput.value = JSON.stringify(result)
 
 }
 
