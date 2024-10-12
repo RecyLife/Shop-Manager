@@ -28,10 +28,12 @@ $productID = $db -> getLastInsertedID();
 
 
 for($i = 0; $i < count($specifications); $i++) {
-    $specTitle = $db -> escapeStrings(htmlspecialchars($specifications[$i]["title"]));
-    $specValue = $db -> escapeStrings(htmlspecialchars($specifications[$i]["value"]));
+    if($specTitle!= "" & $specValue != "") {
+        $specTitle = $db -> escapeStrings(htmlspecialchars($specifications[$i]["title"]));
+        $specValue = $db -> escapeStrings(htmlspecialchars($specifications[$i]["value"]));
+    }
 
-    $db -> query("INSERT into recytech_specifications (title, value_, product_ID) VALUES ('$specTitle', '$specValue', $productID)");
+    $db -> query("INSERT into recytech_specifications (title, value_, product_ID) VALUES (?, ?, ?)", [$specTitle, $specValue, $productID]);
 }
 
 // header("location: ../new_product/");
