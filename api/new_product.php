@@ -8,11 +8,6 @@ $db = new Database;
 
 
 $title = $db->escapeStrings(htmlspecialchars($_POST["title"]));
-$quantity = (int)$db->escapeStrings(htmlspecialchars($_POST["quantity"]));
-if($quantity < 0) {
-    echo json_encode(array("error"=> "error with quantity value"));
-    exit();
-}
 $price = (float)$db->escapeStrings(htmlspecialchars($_POST["price"]));
 if($price < 0) {
     echo json_encode(array("error"=> "error with price value"));
