@@ -38,11 +38,14 @@ function onFormSubmit() {
     const specificationsValuesInputs = document.getElementsByClassName("specificationValueInput")
     const specificationsTitlesInputs = document.getElementsByClassName("specificationTitleInput")
 
+    let result = [];
+    
+    for (let i = 0; i < specificationsTitlesInputs.length; i++) {
+        result.push({"title": specificationsTitlesInputs[i].value, "value": specificationsValuesInputs[i].value})
+    }
+    
+    specificationsResultInput.innerText = JSON.stringify(result)
 
-
-    console.log(specificationsTitlesInputs)
-    console.log(specificationsValuesInputs)
-    return false;
 }
 
 addCategories();
