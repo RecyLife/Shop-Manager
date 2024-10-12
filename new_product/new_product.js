@@ -20,14 +20,31 @@ function addSpecification(defaultTitle, defaultValue) {
     
     specificationTitleInput.placeholder = "Specification title"
     specificationTitleInput.value = defaultTitle ?? ""
+    specificationTitleInput.classList.add("specificationTitleInput")
+
     specificationValueInput.value = defaultValue ?? ""
     specificationValueInput.placeholder = "Specification value"
+    specificationValueInput.classList.add("specificationValueInput")
+
 
     const specificationDiv = document.getElementById("specifications")
     specificationDiv.appendChild(specificationTitleInput)
     specificationDiv.appendChild(specificationValueInput)
     specificationDiv.appendChild(document.createElement("br"))
 }
+
+function onFormSubmit() {
+    const specificationsResultInput = document.getElementById("specificationsResult");
+    const specificationsValuesInputs = document.getElementsByClassName("specificationValueInput")
+    const specificationsTitlesInputs = document.getElementsByClassName("specificationTitleInput")
+
+
+
+    console.log(specificationsTitlesInputs)
+    console.log(specificationsValuesInputs)
+    return false;
+}
+
 addCategories();
 
 const DEFAULT_SPECIFICATIONS = ["Famille de processeur", "Mémoire vive", "Capacité SSD", "Fréquence du processeur", "Nombre de cœurs de processeur", ]
