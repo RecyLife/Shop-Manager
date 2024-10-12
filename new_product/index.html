@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New product</title>
+    <script src="new_product.js" defer></script>
+</head>
+
+<body>
+    <h1>Nouveau produit</h1>
+    <form action="api/new_product.php" method="post">
+        <label>Titre:
+            <input name="title" type="text" placeholder="titre du produit">
+        </label>
+        <br>
+        <label>Quantité
+            <input name="quantity" type="number" placeholder="quantité">
+        </label>
+        <br>
+        <label>Prix (CHF)
+            <input name="price" type="number" placeholder="Prix (CHF)">
+        </label>
+        <br>
+        <label>Catégorie :
+            <select name="category" id="categorySelector">
+
+            </select>
+        </label>
+    </form>
+</body>
+
+</html>
