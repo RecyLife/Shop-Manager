@@ -2,8 +2,8 @@
 
 class Database
 {
-
     private $conn;
+
     public function __construct()
     {
         include_once(dirname(__FILE__) . "/secrets.php");
@@ -14,40 +14,60 @@ class Database
         }
     }
 
-    public function select($sql_prompt)
+    public function select($sql_prompt, $params = [])
     {
-        $result = mysqli_query($this->conn, $sql_prompt);
-
-        if (!$result) {
-            die("Query failed: " . mysqli_error($this->conn));
+        $stmt = $this->conn->prepare($sql_prompt);
+        if ($stmt === false) {
+            die("Prepare failed: " . $this->conn->error);
         }
 
-        $data = array();
-        while ($row = mysqli_fetch_assoc($result)) {
+        if (!empty($params)) {
+            $types = str_repeat('s', count($params));
+            $stmt->bind_param($types, ...$params);
+        }
+
+        if (!$stmt->execute()) {
+            die("Execute failed: " . $stmt->error);
+        }
+
+        $result = $stmt->get_result();
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
             $data[] = $row;
         }
 
+        $stmt->close();
         return $data;
     }
 
-    public function query($sql_prompt)
+    public function query($sql_prompt, $params = [])
     {
-        $result = $this->conn->query($sql_prompt);
-
-        if (!$result) {
-            die("Query failed: " . mysqli_error($this->conn));
+        $stmt = $this->conn->prepare($sql_prompt);
+        if ($stmt === false) {
+            die("Prepare failed: " . $this->conn->error);
         }
 
+        if (!empty($params)) {
+            $types = str_repeat('s', count($params));
+            $stmt->bind_param($types, ...$params);
+        }
+
+        if (!$stmt->execute()) {
+            die("Execute failed: " . $stmt->error);
+        }
+
+        $result = $stmt->affected_rows;
+        $stmt->close();
         return $result;
     }
 
     public function closeConnection()
     {
-        mysqli_close($this->conn);
+        $this->conn->close();
     }
 
     public function escapeStrings($str)
     {
-        return mysqli_real_escape_string($this->conn, $str);
+        return $this->conn->real_escape_string($str);
     }
 }
