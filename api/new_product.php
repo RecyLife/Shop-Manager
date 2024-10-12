@@ -21,5 +21,8 @@ if(count($matchCategories) < 1) {
     exit();
 }
 
+
+
+
 $db -> query("INSERT into recytech_products (title, quantity, price, category_ID) VALUES ('$title', '$quantity', '$price', '$category')");
 header("location: ../new_product/");
