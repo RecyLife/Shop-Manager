@@ -38,19 +38,20 @@ function onFormSubmit() {
     const specificationsValuesInputs = document.getElementsByClassName("specificationValueInput")
     const specificationsTitlesInputs = document.getElementsByClassName("specificationTitleInput")
 
-    let result = [];
-    
-    for (let i = 0; i < specificationsTitlesInputs.length; i++) {
-        result.push({"title": specificationsTitlesInputs[i].value, "value": specificationsValuesInputs[i].value})
+    if(specificationsTitlesInputs[i].value != "" && specificationsValuesInputs.value != ""){
+        let result = [];
+        
+        for (let i = 0; i < specificationsTitlesInputs.length; i++) {
+            result.push({"title": specificationsTitlesInputs[i].value, "value": specificationsValuesInputs[i].value})
+        }
+        
+        specificationsResultInput.value = JSON.stringify(result)
     }
-    
-    specificationsResultInput.value = JSON.stringify(result)
-
 }
 
 if(window.location.protocol != 'https:') {
-    location.href = location.href.replace("http://", "https://");
-  }
+    location.href = "https://" + location.href.replace("http://", "");
+}
   
 
 addCategories();

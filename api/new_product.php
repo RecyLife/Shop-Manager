@@ -1,11 +1,15 @@
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+
 include_once(dirname(__FILE__) . "/utils/database.php");
+include_once(dirname(__FILE__). "/secrets/database.php");
 
 $db = new Database;
 
+$password = $_POST["password"];
+if($password != ADMIN_PASSWORD) {
+    echo json_encode(array("error"=> "invalid admin password"));
+    exit();
+}
 
 $title = $db->escapeStrings(htmlspecialchars($_POST["title"]));
 $price = (float)$db->escapeStrings(htmlspecialchars($_POST["price"]));
@@ -36,4 +40,4 @@ for($i = 0; $i < count($specifications); $i++) {
     $db -> query("INSERT into recytech_specifications (title, value_, product_ID) VALUES (?, ?, ?)", [$specTitle, $specValue, $productID]);
 }
 
-// header("location: ../new_product/");
+header("location: ../admin");
