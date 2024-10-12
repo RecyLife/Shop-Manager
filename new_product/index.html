@@ -10,7 +10,7 @@
 
 <body>
     <h1>Nouveau produit</h1>
-    <form onsubmit="onFormSubmit()" action="../api/new_product.php" method="post">
+    <form onsubmit="onFormSubmit()" action="../api/new_product.php" method="post" enctype="multipart/form-data">
         <label>Titre:
             <input name="title" type="text" placeholder="titre du produit">
         </label>
@@ -28,6 +28,8 @@
         <h3>Spécification</h3>
         <div id="specifications"></div>
         <button type="button" onclick="addSpecification()">New specification</button>
+        <br>
+        <input type="file" name="images[]" multiple>
         <br>
         <input type="hidden" id="specificationsResult" name="specifications">
         <input name="password" type="password" placeholder="Admin password">
