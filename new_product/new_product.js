@@ -48,6 +48,11 @@ function onFormSubmit() {
 
 }
 
+if(window.location.protocol != 'https:') {
+    location.href = location.href.replace("http://", "https://");
+  }
+  
+
 addCategories();
 
 const DEFAULT_SPECIFICATIONS = ["Famille de processeur", "Mémoire vive", "Capacité SSD", "Fréquence du processeur", "Nombre de cœurs de processeur", ]
