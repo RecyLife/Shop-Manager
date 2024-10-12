@@ -29,10 +29,14 @@
         <div id="specifications"></div>
         <button type="button" onclick="addSpecification()">New specification</button>
         <br>
-        <input type="file" name="images[]" multiple>
+        <label>Product images :
+            <input type="file" name="images[]" multiple>
+        </label>
         <br>
         <input type="hidden" id="specificationsResult" name="specifications">
-        <input name="password" type="password" placeholder="Admin password">
+        <label>Admin password
+            <input name="password" type="password" placeholder="Admin password">
+        </label>
         <br>
         <input type="submit" value="Submit">
     </form>
