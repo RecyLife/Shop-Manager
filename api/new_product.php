@@ -75,4 +75,4 @@ foreach ($_FILES["images"]["tmp_name"] as $key => $tmp_name) {
 
 }
 
-header("location: ../admin");
+header("location: ../");
