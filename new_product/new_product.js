@@ -50,7 +50,7 @@ function onFormSubmit() {
 }
 
 if(window.location.protocol != 'https:') {
-    location.href = "https://" + location.href.replace("http://", "");
+    window.location.protocol = 'https:';
 }
   
 
