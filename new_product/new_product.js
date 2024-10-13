@@ -38,7 +38,7 @@ function onFormSubmit() {
     const specificationsValuesInputs = document.getElementsByClassName("specificationValueInput")
     const specificationsTitlesInputs = document.getElementsByClassName("specificationTitleInput")
 
-    if(specificationsTitlesInputs[i].value != "" && specificationsValuesInputs.value != ""){
+    if(specificationsTitlesInputs.value != "" && specificationsValuesInputs.value != ""){
         let result = [];
         
         for (let i = 0; i < specificationsTitlesInputs.length; i++) {
@@ -50,7 +50,7 @@ function onFormSubmit() {
 }
 
 if(window.location.protocol != 'https:') {
-    location.href = "https://" + location.href.replace("http://", "");
+    window.location.protocol = 'https:';
 }
   
 

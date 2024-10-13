@@ -1,7 +1,8 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include_once(dirname(__FILE__) . "/utils/database.php");
-include_once(dirname(__FILE__). "/secrets/database.php");
+include_once(dirname(__FILE__). "/utils/secrets.php");
 
 $db = new Database;
 const ALLOWED_IMAGES_EXT = ["png", "jpg", "jpeg"];
@@ -9,6 +10,8 @@ const ALLOWED_IMAGES_MIMES = array("image/jpeg", "image/png");
 const MAX_IMAGES_SIZE = 2 * 1000 * 1000; // 2 MB
 
 $password = $_POST["password"];
+echo $password;
+echo ADMIN_PASSWORD;
 if($password != ADMIN_PASSWORD) {
     echo json_encode(array("error"=> "invalid admin password"));
     exit();
