@@ -14,7 +14,7 @@ SELECT
     recytech_products.price as price,
     recytech_categories.title as category
 from recytech_products
-INNER JOIN recytech_categories ON 
-recytech_products.category_ID=recytech_categories.ID");
+INNER JOIN recytech_categories 
+    ON recytech_products.category_ID = recytech_categories.ID");
 
 echo json_encode(array_values($products));
