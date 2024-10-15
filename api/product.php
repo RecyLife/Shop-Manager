@@ -22,7 +22,7 @@ SELECT
 from recytech_products
 INNER JOIN recytech_categories 
     ON recytech_products.category_ID = recytech_categories.ID
-WHERE recytech_products.ID = $id");
+WHERE recytech_products.ID = ?", $id);
 
 if(count($products) > 0) {
     echo json_encode($products[0]);
