@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('Content-Type: application/json');
-
 include_once(dirname(__FILE__) . "/utils/database.php");
 
 $db = new Database;
@@ -14,7 +13,7 @@ if(!isset(($_GET["id"]))) {
 
 $id = $db -> escapeStrings($_GET["id"]);
 
-$products = $db -> select("
+$product = $db -> select("
 SELECT 
     recytech_products.ID as ID, 
     recytech_products.title as title,
@@ -27,6 +26,11 @@ INNER JOIN recytech_categories
     ON recytech_products.category_ID = recytech_categories.ID
 WHERE recytech_products.ID = ?", [$id]);
 
-if(count($products) > 0) {
-    echo json_encode($products[0]);
+$specifications = $db -> select("SELECT * from recytech_specifications WHERE product_ID = ?", [$id]);
+
+
+if(count($product) > 0) {
+    $product[0]["specifications"] = array_values($specifications);
+
+    echo json_encode($product[0]);
 } 
