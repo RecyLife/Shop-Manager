@@ -4,15 +4,15 @@ ini_set('display_errors', 1);
 include_once(dirname(__FILE__) . "/utils/database.php");
 include_once(dirname(__FILE__). "/utils/secrets.php");
 
+session_start();
+
 $db = new Database;
 const ALLOWED_IMAGES_EXT = ["png", "jpg", "jpeg"];
 const ALLOWED_IMAGES_MIMES = array("image/jpeg", "image/png");
 const MAX_IMAGES_SIZE = 2 * 1000 * 1000; // 2 MB
 
-$password = $_POST["password"];
-
-if($password != ADMIN_PASSWORD) {
-    echo json_encode(array("error"=> "invalid admin password"));
+if(!isset($_SESSION["admin"])) {
+    echo json_encode(array("error" => "you are not logged in as admin"));
     exit();
 }
 
@@ -32,7 +32,12 @@ if(count($matchCategories) < 1) {
 
 $specifications =  json_decode($_POST["specifications"], true);
 
-$db->query("INSERT INTO recytech_products (title, price, category_ID) VALUES (?, ?, ?)", [$title, $price, $category]);
+if(isset($_POST["id"])){
+    $db->query("UPDATE recytech_products SET title = ?, price = ?, category = ? WHERE ID = ?", [$title, $price, $category, $db->escapeStrings($_POST["id"])]);
+}else{
+    $db->query("INSERT INTO recytech_products (title, price, category_ID) VALUES (?, ?, ?)", [$title, $price, $category]);
+}
+
 $productID = $db -> getLastInsertedID();
 
 for($i = 0; $i < count($specifications); $i++) {
