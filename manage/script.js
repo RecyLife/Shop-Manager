@@ -25,6 +25,10 @@ async function getProducts() {
     th.innerText = "edit page";
     tr.appendChild(th);
 
+    th = document.createElement("th");
+    th.innerText = "remove product";
+    tr.appendChild(th);
+
     productsTable.appendChild(tr);
 
     for (let i = 0; i < products.length; i++) {
@@ -42,6 +46,11 @@ async function getProducts() {
         th = document.createElement("th");
         console.log(products[i].ID)
         th.innerHTML = `<a href='../edit?id=${products[i].ID}'>edit</a>`
+        tr.appendChild(th)
+
+        th = document.createElement("th");
+        console.log(products[i].ID)
+        th.innerHTML = `<a href='../api/remove_product.php?id=${products[i].ID}'>remove</a>`
         tr.appendChild(th)
 
         productsTable.appendChild(tr);
