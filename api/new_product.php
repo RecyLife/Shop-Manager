@@ -23,6 +23,12 @@ if($price < 0) {
     exit();
 }
 
+$quantity = (float)$db->escapeStrings(htmlspecialchars($_POST["quantity"]));
+if($quantity < 0) {
+    echo json_encode(array("error"=> "error with quantity value"));
+    exit();
+}
+
 $category = $db->escapeStrings(htmlspecialchars($_POST["category"]));
 $matchCategories = $db->select("SELECT * FROM recytech_categories WHERE ID = ?", [$category]);
 if(count($matchCategories) < 1) {
@@ -32,7 +38,7 @@ if(count($matchCategories) < 1) {
 
 $specifications =  json_decode($_POST["specifications"], true);
 
-$db->query("INSERT INTO recytech_products (title, price, category_ID) VALUES (?, ?, ?)", [$title, $price, $category]);
+$db->query("INSERT INTO recytech_products (title, price, category_ID, quantity) VALUES (?, ?, ?, ?)", [$title, $price, $category, $quantity]);
 
 $productID = $db -> getLastInsertedID();
 

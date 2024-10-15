@@ -16,7 +16,8 @@ $id = $db -> escapeStrings($_GET["id"]);
 $products = $db -> select("
 SELECT 
     recytech_products.ID as ID, 
-    recytech_products.title as title, 
+    recytech_products.title as title,
+    recytech_products.quantity as quantity,
     recytech_products.price as price,
     recytech_categories.title as category
 from recytech_products
