@@ -21,6 +21,7 @@ SELECT
     recytech_products.quantity as quantity,
     recytech_products.price as price,
     recytech_categories.title as category
+    recytech_products.category_ID
 from recytech_products
 INNER JOIN recytech_categories 
     ON recytech_products.category_ID = recytech_categories.ID
