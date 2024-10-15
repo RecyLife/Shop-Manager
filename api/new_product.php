@@ -32,11 +32,7 @@ if(count($matchCategories) < 1) {
 
 $specifications =  json_decode($_POST["specifications"], true);
 
-if(isset($_POST["id"])){
-    $db->query("UPDATE recytech_products SET title = ?, price = ?, category = ? WHERE ID = ?", [$title, $price, $category, $db->escapeStrings($_POST["id"])]);
-}else{
-    $db->query("INSERT INTO recytech_products (title, price, category_ID) VALUES (?, ?, ?)", [$title, $price, $category]);
-}
+$db->query("INSERT INTO recytech_products (title, price, category_ID) VALUES (?, ?, ?)", [$title, $price, $category]);
 
 $productID = $db -> getLastInsertedID();
 
