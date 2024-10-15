@@ -4,10 +4,11 @@ main {
     position: absolute;
     top: 50%;
     left: 50%;
+    gap: 20px;
     width: 400px;
     height: 320px;
     transform: translate(-50%, -50%);
-    box-shadow: 2px 2px #000000;
+    box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.75);
     background-color: var(--secondary-color); 
 }
 
@@ -16,4 +17,67 @@ main, .connection-form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.connection-title, .form-link {
+    color: var(--primary-color);
+}
+
+.connection-form {
+    gap: 5px;
+}
+
+.form-input, .form-button {
+    border: 2px solid white;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    width: 225px;
+    outline: none;
+}
+
+.form-input:focus, .form-button:focus {
+    border: 2px solid var(--primary-color);
+}
+
+.form-button {
+    color: var(--secondary-color);
+    background-color: white;
+    transition: 0.2s;
+}
+
+.form-button:hover {
+    transform: scale(0.98);
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        gap: 10px;
+        width: 350px;
+        height: 270px;
+    }
+
+    .connection-title {
+        font-size: 30px;
+    }
+}
+
+@media (pointer: coarse) {
+    .buy-button:hover {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    main {
+        gap: 5px;
+        width: 300px;
+    }
+
+    .form-input, .form-button {
+        width: 232px;
+    }
+
+    .connection-title {
+        font-size: 26px;
+    }
 }
