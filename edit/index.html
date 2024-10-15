@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecyTech edit product</title>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Modifier le produit</h1>
+
+    <label>Titre:
+        <label>Titre:
+            <input id="titleInput" name="title" type="text" placeholder="titre du produit">
+        </label>
+        <br>
+        <label>Prix (CHF)
+            <input id="priceInput" name="price" type="number" placeholder="Prix (CHF)">
+        </label>
+        <br>
+        <label>Quantity
+            <input id="quantityInput" name="quantity" type="number" placeholder="Quantité">
+        </label>
+        <br>
+        <label>Catégorie :
+            <select name="category" id="categorySelector">
+
+            </select>
+        </label>
+        <br>
+        <h3>Spécification</h3>
+        <div id="specifications"></div>
+        <button type="button" onclick="addSpecification()">New specification</button>
+
+    </label>
+</body>
+
+</html>
