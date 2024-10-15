@@ -10,8 +10,7 @@ const ALLOWED_IMAGES_MIMES = array("image/jpeg", "image/png");
 const MAX_IMAGES_SIZE = 2 * 1000 * 1000; // 2 MB
 
 $password = $_POST["password"];
-echo $password;
-echo ADMIN_PASSWORD;
+
 if($password != ADMIN_PASSWORD) {
     echo json_encode(array("error"=> "invalid admin password"));
     exit();
