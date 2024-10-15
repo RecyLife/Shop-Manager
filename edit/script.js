@@ -29,6 +29,7 @@ async function addDefaultsValues(){
     const response = await fetch("../api/product.php?id=" + id);
     const product = await response.json();
     
+    document.getElementById("idInput").value = id;
     document.getElementById("titleInput").value = product.title;
     document.getElementById("priceInput").value = product.price;
     document.getElementById("quantityInput").value = product.quantity;
@@ -38,6 +39,22 @@ async function addDefaultsValues(){
         addSpecification(product.specifications[i].title, product.specifications[i].value_)
     }
 
+}
+
+function onFormSubmit() {
+    const specificationsResultInput = document.getElementById("specificationsResult");
+    const specificationsValuesInputs = document.getElementsByClassName("specificationValueInput")
+    const specificationsTitlesInputs = document.getElementsByClassName("specificationTitleInput")
+
+    if(specificationsTitlesInputs.value != "" && specificationsValuesInputs.value != ""){
+        let result = [];
+        
+        for (let i = 0; i < specificationsTitlesInputs.length; i++) {
+            result.push({"title": specificationsTitlesInputs[i].value, "value": specificationsValuesInputs[i].value})
+        }
+        
+        specificationsResultInput.value = JSON.stringify(result)
+    }
 }
 
 function addSpecification(defaultTitle, defaultValue) {
