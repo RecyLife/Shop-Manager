@@ -13,6 +13,11 @@ if(!isset(($_GET["id"]))) {
 
 $id = $db -> escapeStrings($_GET["id"]);
 
+$withImages = false;
+if(isset($_GET["images"])){
+    $withImages = $_GET["images"] == "1";
+}
+
 $product = $db -> select("
 SELECT 
     recytech_products.ID as ID, 
@@ -26,11 +31,25 @@ INNER JOIN recytech_categories
     ON recytech_products.category_ID = recytech_categories.ID
 WHERE recytech_products.ID = ?", [$id]);
 
+
+if(count($product) < 1) {
+    echo json_encode(array());
+    exit();
+}
+
 $specifications = $db -> select("SELECT * from recytech_specifications WHERE product_ID = ?", [$id]);
+$product[0]["specifications"] = array_values($specifications);
+
+if($withImages) {
+    $imagesResult = array();
+    $images = $db -> select("SELECT * from recytech_images WHERE product_ID = ?", [$id]);
+
+    for ($i=0; $i < count($images); $i++) { 
+        array_push($imagesResult, array(base64_encode($images[$i]["image_"])));
+    }
+
+    $product[0]["images"] = array_values($imagesResult);
+}
 
 
-if(count($product) > 0) {
-    $product[0]["specifications"] = array_values($specifications);
-
-    echo json_encode($product[0]);
-} 
+echo json_encode($product[0]);
