@@ -45,7 +45,7 @@ if($withImages) {
     $images = $db -> select("SELECT * from recytech_images WHERE product_ID = ?", [$id]);
 
     for ($i=0; $i < count($images); $i++) { 
-        array_push($imagesResult, array(base64_encode($images[$i]["image_"])));
+        array_push($imagesResult, base64_encode($images[$i]["image_"]));
     }
 
     $product[0]["images"] = array_values($imagesResult);
