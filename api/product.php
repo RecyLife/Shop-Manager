@@ -8,6 +8,7 @@ include_once(dirname(__FILE__) . "/utils/database.php");
 $db = new Database;
 
 if(!isset(($_GET["id"]))) {
+    echo json_encode(array("error" => "ID is not specified"));
     exit();
 }
 
@@ -23,7 +24,7 @@ SELECT
 from recytech_products
 INNER JOIN recytech_categories 
     ON recytech_products.category_ID = recytech_categories.ID
-WHERE recytech_products.ID = ?", $id);
+WHERE recytech_products.ID = ?", [$id]);
 
 if(count($products) > 0) {
     echo json_encode($products[0]);
