@@ -1,5 +1,5 @@
 
-async function addCategories() {
+async function getCategories() {
     const response = await fetch("../api/categories.php");
     const categories = await response.json();
     const categorySelector = document.getElementById("categorySelector");
@@ -54,7 +54,7 @@ if(window.location.protocol != 'https:') {
 }
   
 
-addCategories();
+getCategories();
 
 const DEFAULT_SPECIFICATIONS = ["Famille de processeur", "Mémoire vive", "Capacité SSD", "Fréquence du processeur", "Nombre de cœurs de processeur", ]
 
