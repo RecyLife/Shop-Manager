@@ -21,9 +21,9 @@ async function getProducts() {
     th.innerText = "product page";
     tr.appendChild(th);
 
-    th = document.createElement("th");
-    th.innerText = "edit page";
-    tr.appendChild(th);
+    // th = document.createElement("th");
+    // th.innerText = "edit page";
+    // tr.appendChild(th);
 
     th = document.createElement("th");
     th.innerText = "remove product";
@@ -43,10 +43,10 @@ async function getProducts() {
         th.innerHTML = `<a href="https://shop.recytech.me/detail?id=${products[i].ID}">product page</a>`
         tr.appendChild(th)
 
-        th = document.createElement("th");
-        console.log(products[i].ID)
-        th.innerHTML = `<a href='../edit?id=${products[i].ID}'>edit</a>`
-        tr.appendChild(th)
+        // th = document.createElement("th");
+        // console.log(products[i].ID)
+        // th.innerHTML = `<a href='../edit?id=${products[i].ID}'>edit</a>`
+        // tr.appendChild(th)
 
         th = document.createElement("th");
         console.log(products[i].ID)
