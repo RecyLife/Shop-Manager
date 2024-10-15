@@ -12,4 +12,5 @@ if($password != ADMIN_PASSWORD) {
 } else {
     session_start();
     $_SESSION["admin"] = "true";
+    exit();
 }
