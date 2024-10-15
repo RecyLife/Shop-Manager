@@ -1,0 +1,19 @@
+main {
+    border-radius: var(--border-radius);
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 320px;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px #000000;
+    background-color: var(--secondary-color); 
+}
+
+main, .connection-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
