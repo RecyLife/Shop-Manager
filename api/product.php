@@ -20,7 +20,7 @@ SELECT
     recytech_products.title as title,
     recytech_products.quantity as quantity,
     recytech_products.price as price,
-    recytech_categories.title as category
+    recytech_categories.title as category,
     recytech_products.category_ID
 from recytech_products
 INNER JOIN recytech_categories 
