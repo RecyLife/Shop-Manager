@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="./connection.css">
+    
     <title>Admin connection</title>
 
     <script>
@@ -14,12 +18,14 @@
 </head>
 
 <body>
-    <h1>Admin connection</h1>
-    <form action="../api/connection.php" , method="post">
-        <input name="password" type="password" placeholder="Admin password">
-        <input type="submit">
-    </form>
-
+    <main>
+        <h1 class="connection-title">Admin connection</h1>
+        <form class="connection-form" action="../api/connection.php" , method="post">
+            <input class="form-input" name="password" type="password" placeholder="Admin password">
+            <button class="form-button" type="submit">Connection</button>
+            <a class="form-link" href="https://shop.recytech.me">Return to shop</a>
+        </form>
+    </main>
 </body>
 
 </html>
