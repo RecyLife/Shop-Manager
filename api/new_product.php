@@ -42,7 +42,7 @@ if(isset($_POST["update"]) && $_POST["update"] == "1") {
     $id = $db->escapeStrings(htmlspecialchars($_POST["id"]));
     $db->query("UPDATE recytech_products SET title = ?, price = ?, category_ID = ?, quantity = ? WHERE ID = ?", [$title, $price, $category, $quantity, $id]);
     $db->query("DELETE FROM recytech_specifications WHERE product_ID = ?", [$id]);
-    $db->query("DELETE FROM recytech_images WHERE product_ID = ?", [$id]);
+    // $db->query("DELETE FROM recytech_images WHERE product_ID = ?", [$id]);
     $productID = $id;
 } else {
     $db->query("INSERT INTO recytech_products (title, price, category_ID, quantity) VALUES (?, ?, ?, ?)", [$title, $price, $category, $quantity]);
