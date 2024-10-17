@@ -21,6 +21,10 @@ async function getOrders() {
     th.innerText = "mark as done";
     tr.appendChild(th);
 
+    th = document.createElement("th");
+    th.innerText = "detail page";
+    tr.appendChild(th);
+
     productsTable.appendChild(tr);
 
     for (let i = 0; i < products.length; i++) {
@@ -35,6 +39,11 @@ async function getOrders() {
             th = document.createElement("th");
             console.log(products[i].ID)
             th.innerHTML = `<a href='../api/order_done.php?id=${products[i].ID}'>mark as done/undone</a>`
+            tr.appendChild(th)
+
+            th = document.createElement("th");
+            console.log(products[i].ID)
+            th.innerHTML = `<a href='order?id=${products[i].ID}'>detail page<a>`
             tr.appendChild(th)
     
             productsTable.appendChild(tr);
