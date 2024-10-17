@@ -12,7 +12,31 @@ if(!isset($_SESSION["admin"])) {
 
 $db = new Database;
 $id = $db->escapeStrings($_GET["id"]);
+$done = $db->select("SELECT done FROM recytech_orders WHERE ID = ?", [$id]);
 
-$db -> query("UPDATE recytech_orders SET done = NOT (SELECT done from recytech_orders WHERE ID = ?) WHERE ID = ?", [$id, $id]);
+if ($done !== false) {
+    $newDoneStatus = !$done[0]['done'];
+    $db->query("UPDATE recytech_orders SET done = ? WHERE ID = ?", [$newDoneStatus, $id]);
 
-header("location: ../orders");
+    if($newDoneStatus == 0){
+        $db->query(
+            "UPDATE recytech_products 
+             SET quantity = quantity + 1 
+             WHERE ID = (SELECT product_ID FROM recytech_order_products WHERE order_ID = ?)",
+            [$id]
+        );    
+    }else{
+        $db->query(
+            "UPDATE recytech_products 
+             SET quantity = quantity - 1
+             WHERE ID = (SELECT product_ID FROM recytech_order_products WHERE order_ID = ?)",
+            [$id]
+        );    
+    }
+
+    header("Location: ../orders");
+    exit();
+} else {
+    echo "Order not found.";
+}
+?>
