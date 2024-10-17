@@ -36,16 +36,23 @@ if(count($matchCategories) < 1) {
     exit();
 }
 
+$place = $db->escapeStrings(htmlspecialchars($_POST["place"]));
+$matchPlaces = $db->select("SELECT * FROM recytech_places WHERE ID = ?", [$place]);
+if(count($matchPlaces) < 1) {
+    echo json_encode(array("error"=> "error with place value"));
+    exit();
+}
+
 $specifications =  json_decode($_POST["specifications"], true);
 
 if(isset($_POST["update"]) && $_POST["update"] == "1") {
     $id = $db->escapeStrings(htmlspecialchars($_POST["id"]));
-    $db->query("UPDATE recytech_products SET title = ?, price = ?, category_ID = ?, quantity = ? WHERE ID = ?", [$title, $price, $category, $quantity, $id]);
+    $db->query("UPDATE recytech_products SET title = ?, price = ?, category_ID = ?, quantity = ?, place_ID = ? WHERE ID = ?", [$title, $price, $category, $quantity, $place, $id]);
     $db->query("DELETE FROM recytech_specifications WHERE product_ID = ?", [$id]);
     // $db->query("DELETE FROM recytech_images WHERE product_ID = ?", [$id]);
     $productID = $id;
 } else {
-    $db->query("INSERT INTO recytech_products (title, price, category_ID, quantity) VALUES (?, ?, ?, ?)", [$title, $price, $category, $quantity]);
+    $db->query("INSERT INTO recytech_products (title, price, category_ID, quantity, place) VALUES (?, ?, ?, ?)", [$title, $price, $category, $quantity, $place]);
     $productID = $db -> getLastInsertedID();
 }
 
