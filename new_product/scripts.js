@@ -1,5 +1,5 @@
 
-async function getCategories() {
+async function fetchCategories() {
     const response = await fetch("../api/categories.php");
     const categories = await response.json();
     const categorySelector = document.getElementById("categorySelector");
@@ -13,6 +13,23 @@ async function getCategories() {
         
     }
 }
+
+
+async function fetchPlaces() {
+    const response = await fetch("../api/places.php");
+    const places = await response.json();
+    const placeSelector = document.getElementById("placeSelector");
+    console.log(places)
+    for (let i = 0; i < places.length; i++) {
+        const optionElement = document.createElement("option");
+        optionElement.innerText = places[i].name
+        optionElement.value = places[i].ID
+        placeSelector.appendChild(optionElement)
+        console.log(categorySelector)
+        
+    }
+}
+
 
 function addSpecification(defaultTitle, defaultValue) {
     const specificationTitleInput = document.createElement("input");
@@ -54,7 +71,9 @@ if(window.location.protocol != 'https:') {
 }
   
 
-getCategories();
+fetchCategories();
+fetchPlaces();
+
 
 const DEFAULT_SPECIFICATIONS = ["Famille de processeur", "Mémoire vive", "Capacité SSD", "Fréquence du processeur", "Nombre de cœurs de processeur", ]
 

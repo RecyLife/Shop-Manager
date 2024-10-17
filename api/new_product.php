@@ -52,7 +52,7 @@ if(isset($_POST["update"]) && $_POST["update"] == "1") {
     // $db->query("DELETE FROM recytech_images WHERE product_ID = ?", [$id]);
     $productID = $id;
 } else {
-    $db->query("INSERT INTO recytech_products (title, price, category_ID, quantity, place) VALUES (?, ?, ?, ?)", [$title, $price, $category, $quantity, $place]);
+    $db->query("INSERT INTO recytech_products (title, price, category_ID, quantity, place_ID) VALUES (?, ?, ?, ?, ?)", [$title, $price, $category, $quantity, $place]);
     $productID = $db -> getLastInsertedID();
 }
 
@@ -103,4 +103,4 @@ if(isset($_FILES["images"]["tmp_name"])){
     }
 }
 
-// header("location: ../");
+header("location: ../");
